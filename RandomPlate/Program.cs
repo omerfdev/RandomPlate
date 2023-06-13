@@ -3,17 +3,21 @@ using System.Threading.Channels;
 
 namespace RandomPlate
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public delegate char CodeValueDelegate(bool numeric);
+        public static CodeValueDelegate codevalueDelegate = CodeValue;
+        public delegate string RandomPlateMethodDelegate(int y);
+        public static RandomPlateMethodDelegate randomplatemethodDelegate= RandomPlateMethod;
+        public static void Main(string[] args)
         {
             Console.WriteLine("Enter Number of Code Length"); 
             int x=int.Parse(Console.ReadLine());
-            Console.WriteLine(RandomPlateMethod(x));
+            Console.WriteLine(randomplatemethodDelegate(x));
             Console.ReadLine();
         }
 
-        private static string RandomPlateMethod(int x)
+        public static string RandomPlateMethod(int x)
         {
             string code = "";
             for (int i = 0; i < x; i++)
@@ -23,7 +27,7 @@ namespace RandomPlate
             return code;
         }
          
-        private static char CodeValue(bool numeric)
+        public static char CodeValue(bool numeric)
         {
             Random rnd = new Random();  
             if (numeric)  return (char)rnd.Next(48, 58); 
