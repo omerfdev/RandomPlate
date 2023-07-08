@@ -38,7 +38,7 @@ namespace RandomPlate
 				else return
 				(char)rnd.Next(65, 91);
 			}
-
+			
 			else
 			{
 				int number = rnd.Next(4);
