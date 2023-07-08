@@ -32,19 +32,18 @@ namespace RandomPlate
 			Random rnd = new Random();
 			if (numeric)
 			{
-				int number = rnd.Next(3);
-				if (number == 0) return (char)rnd.Next(48, 58);
-				else if (number == 1) { return (char)rnd.Next(97, 122); }
-				else return
-				(char)rnd.Next(65, 91);
+				int number = rnd.Next(2);
+				if (number == 0) return (char)rnd.Next(97, 122);
+				else return  (char)rnd.Next(65, 91);
 			}
-			
+
 			else
 			{
-				int number = rnd.Next(4);
+				int number = rnd.Next(5);
 				if (number == 0) { return (char)rnd.Next(95, 96); }
 				else if (number == 1) { return (char)rnd.Next(45, 47); }
 				else if (number == 2) { return (char)rnd.Next(33, 34); }
+				else if (number == 3) { return (char)rnd.Next(48, 58); }
 				else { return (char)rnd.Next(42, 43); }
 			}
 		}

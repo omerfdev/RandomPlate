@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace PasswordRandom
 {
@@ -9,17 +12,36 @@ namespace PasswordRandom
 		static void Main()
 		{
 			string password = GeneratePassword();
-			Console.WriteLine("Oluşturulan şifre: " + password);
+			string hashed = GenerateHash(password);
+			Console.WriteLine("Created Password: " + password);
+			Console.WriteLine("Hashed Output: " + hashed);
 			Console.ReadLine();
 		}
+
+		private static string GenerateHash(string password)
+		{
+			byte[] inputBytes = Encoding.UTF8.GetBytes(password);
+			byte[] hashedBytes;
+
+			using (SHA256 sha256 = SHA256.Create())
+			{
+				hashedBytes = sha256.ComputeHash(inputBytes);
+			}
+
+			StringBuilder sb = new StringBuilder();
+			foreach (byte b in hashedBytes)
+			{
+				sb.Append(b.ToString("x2"));
+			}
+
+			return sb.ToString();
+		}
+
 		static string GeneratePassword()
 		{
 			string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789*-_,!.";
 			int length = random.Next(8, 17);
-
 			char[] password = new char[length];
-
-			// En az bir büyük harf, bir küçük harf ve özel karakter eklemek için flag'ler kullanılıyor
 			bool hasUpper = false;
 			bool hasLower = false;
 			bool hasSpecial = false;
@@ -27,7 +49,6 @@ namespace PasswordRandom
 			for (int i = 0; i < length; i++)
 			{
 				password[i] = characters[random.Next(characters.Length)];
-
 				if (char.IsUpper(password[i]))
 					hasUpper = true;
 				else if (char.IsLower(password[i]))
