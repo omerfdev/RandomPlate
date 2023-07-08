@@ -41,9 +41,10 @@ namespace RandomPlate
 
 			else
 			{
-				int number = rnd.Next(3);
+				int number = rnd.Next(4);
 				if (number == 0) { return (char)rnd.Next(95, 96); }
-				else if (number == 1) { return (char)rnd.Next(45, 47); }				
+				else if (number == 1) { return (char)rnd.Next(45, 47); }
+				else if (number == 2) { return (char)rnd.Next(33, 34); }
 				else { return (char)rnd.Next(42, 43); }
 			}
 		}
