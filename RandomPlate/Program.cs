@@ -29,9 +29,25 @@ namespace RandomPlate
          
         public static char CodeValue(bool numeric)
         {
-            Random rnd = new Random();  
-            if (numeric)  return (char)rnd.Next(48, 58); 
-            else return (char)rnd.Next(65,91);
+            Random rnd = new Random();
+            if (numeric)
+            {
+                int number=rnd.Next(2);
+             if(number==0)   return (char)rnd.Next(48,58);
+             else return (char)rnd.Next(95,96);
+            }
+
+            else
+            {
+                int number = rnd.Next(3);
+                if (number==0) { return (char)rnd.Next(65, 91); }
+                else if (number==1){ return (char)rnd.Next(45,47); }
+                else if (number == 2) { return (char)rnd.Next(97, 122); }
+                else
+                {
+					return (char)rnd.Next(42,43);
+				}
+            }
         }
         
     }
