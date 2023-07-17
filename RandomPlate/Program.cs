@@ -16,7 +16,11 @@ namespace RandomPlate
 			Console.WriteLine(randomplatemethodDelegate(x));
 			Console.ReadLine();
 		}
-
+		/// <summary>
+		/// Method Gives Random Plate Code
+		/// </summary>
+		/// <param name="x"></param>
+		/// <returns></returns>
 		public static string RandomPlateMethod(int x)
 		{
 			string code = "";
